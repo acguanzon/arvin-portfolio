@@ -8,6 +8,18 @@ const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-space" });
 export const metadata: Metadata = {
   title: "Arvin John D. Guanzon — BSIT Developer",
   description: "Portfolio of Arvin John D. Guanzon, BSIT 3rd year student & developer. PHP, Java, Python, MySQL, REST APIs.",
+  openGraph: {
+    title: "Arvin John D. Guanzon — BSIT Developer",
+    description: "BSIT 3rd year student & developer. Backend, Android, REST APIs.",
+    type: "website",
+    images: [],
+  },
+  twitter: {
+    card: "summary",
+    title: "Arvin John D. Guanzon — BSIT Developer",
+    description: "BSIT 3rd year student & developer. Backend, Android, REST APIs.",
+    images: [],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

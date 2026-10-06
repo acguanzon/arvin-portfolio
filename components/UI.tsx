@@ -57,8 +57,6 @@ export function SectionHeading({
 export function CustomCursor() {
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  const sx = useSpring(x, { stiffness: 900, damping: 55, mass: 0.4 });
-  const sy = useSpring(y, { stiffness: 900, damping: 55, mass: 0.4 });
   const [hovering, setHovering] = useState(false);
   const [touch, setTouch] = useState(false);
 
@@ -85,7 +83,7 @@ export function CustomCursor() {
   return (
     <motion.div
       className="custom-cursor pointer-events-none fixed left-0 top-0 z-[100]"
-      style={{ x: sx, y: sy }}
+      style={{ x, y }}
     >
       <motion.div
         animate={{

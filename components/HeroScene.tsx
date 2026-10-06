@@ -12,9 +12,9 @@ function Blob({ color, speed, distort }: { color: string; speed: number; distort
     if (!mesh.current) return;
     mesh.current.rotation.x += 0.002 * speed;
     mesh.current.rotation.y += 0.003 * speed;
-    // mouse parallax
-    mesh.current.position.x += (pointer.x * 0.6 - mesh.current.position.x) * 0.05;
-    mesh.current.position.y += (pointer.y * 0.6 - mesh.current.position.y) * 0.05;
+    // mouse parallax — near-instant follow
+    mesh.current.position.x += (pointer.x * 0.6 - mesh.current.position.x) * 0.2;
+    mesh.current.position.y += (pointer.y * 0.6 - mesh.current.position.y) * 0.2;
     if (light.current) {
       light.current.position.x = pointer.x * 5;
       light.current.position.y = pointer.y * 5;
