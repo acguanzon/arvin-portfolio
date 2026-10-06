@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  background: #060606;
+  color: #f4f4f5;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #d7ff3e;
+  color: #060606;
+}
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: var(--noise);
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.6;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.35);
+  color: transparent;
+}
+
+.glass {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.hide-cursor, .hide-cursor * {
+  cursor: none !important;
+}
+
+@media (pointer: coarse) {
+  .custom-cursor { display: none !important; }
+}
