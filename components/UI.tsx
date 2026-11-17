@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Volume2, VolumeX } from "lucide-react";
 import { ReactNode } from "react";
 
 export function Magnetic({ children }: { children: ReactNode }) {
@@ -95,59 +94,6 @@ export function CustomCursor() {
         className="-translate-x-1/2 -translate-y-1/2 rounded-full border border-lime/70 flex items-center justify-center"
         style={{ translateX: "-50%", translateY: "-50%" }}
       />
-    </motion.div>
-  );
-}
-
-export function Loader({ done, onFinish }: { done: boolean; onFinish: () => void }) {
-  const [muted, setMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Browsers block autoplay with sound — start muted, then unmute on first tap.
-  useEffect(() => {
-    const unmute = () => {
-      setMuted(false);
-      videoRef.current?.play().catch(() => {});
-    };
-    window.addEventListener("pointerdown", unmute, { once: true });
-    return () => window.removeEventListener("pointerdown", unmute);
-  }, []);
-
-  useEffect(() => {
-    if (videoRef.current) videoRef.current.muted = muted;
-  }, [muted]);
-
-  return (
-    <motion.div
-      animate={{ y: done ? "-100%" : "0%" }}
-      transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-      className="fixed inset-0 z-[90] bg-black flex items-center justify-center overflow-hidden"
-    >
-      <video
-        ref={videoRef}
-        src="/loading.mp4"
-        autoPlay
-        muted
-        playsInline
-        onEnded={onFinish}
-        onError={onFinish}
-        className="w-[min(880px,86vw)] max-h-[72vh] rounded-2xl border border-white/15 shadow-2xl object-contain bg-black"
-      />
-      <div className="absolute bottom-6 right-6 flex gap-2">
-        <button
-          onClick={onFinish}
-          className="glass px-4 py-2.5 rounded-full text-xs font-bold hover:border-lime"
-        >
-          SKIP
-        </button>
-        <button
-          onClick={() => setMuted(!muted)}
-          className="glass px-4 py-2.5 rounded-full text-xs font-bold flex items-center gap-2 hover:border-lime"
-        >
-          {muted ? <VolumeX size={15} className="text-lime" /> : <Volume2 size={15} className="text-lime" />}
-          {muted ? "TAP FOR SOUND" : "SOUND ON"}
-        </button>
-      </div>
     </motion.div>
   );
 }

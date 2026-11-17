@@ -6,6 +6,13 @@ import { SectionHeading } from "./UI";
 
 const certs = [
   {
+    title: "NASA Space Apps Challenge",
+    org: "NASA Space Apps Challenge",
+    date: "Nov 14–15, 2026",
+    desc: "“Galactic Problem Solver” — 2026 NASA Space Apps Challenge certificate for outstanding participation and efforts to address challenges we face on Earth and in space.",
+    image: "/NasaCertificate.png",
+  },
+  {
     title: "IBM Bob 2.0 Hackathon",
     org: "LABLAB x NativelyAI",
     date: "Sep 25–27, 2026",
@@ -15,7 +22,7 @@ const certs = [
 ];
 
 export default function Certificates() {
-  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<typeof certs[number] | null>(null);
   return (
     <section id="certificates" className="w-[min(1100px,92vw)] mx-auto py-10 pb-24">
       <SectionHeading
@@ -30,7 +37,7 @@ export default function Certificates() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            onClick={() => setOpen(true)}
+            onClick={() => setSelected(c)}
             data-hover
             className="group glass rounded-3xl overflow-hidden text-left hover:border-lime/40 transition-colors"
           >
@@ -55,24 +62,15 @@ export default function Certificates() {
             </div>
           </motion.button>
         ))}
-
-        {/* placeholder for next cert */}
-        <div className="rounded-3xl border border-dashed border-white/15 p-8 flex flex-col justify-center text-white/40 text-sm">
-          <p className="font-display text-xl font-bold text-white/60">Your next certificate here</p>
-          <p className="mt-2">
-            Drop another PNG in <code className="text-lime">public/</code> and add it to{" "}
-            <code className="text-lime">components/Certificates.tsx</code>.
-          </p>
-        </div>
       </div>
 
       <AnimatePresence>
-        {open && (
+        {selected && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
+            onClick={() => setSelected(null)}
             className="fixed inset-0 z-[80] bg-black/90 backdrop-blur flex items-center justify-center p-6"
           >
             <motion.div
@@ -83,9 +81,13 @@ export default function Certificates() {
               onClick={(e) => e.stopPropagation()}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/certificate.png" alt="IBM Bob 2.0 certificate" className="w-full rounded-2xl border border-white/20" />
+              <img
+                src={selected.image}
+                alt={selected.title}
+                className="w-full rounded-2xl border border-white/20"
+              />
               <button
-                onClick={() => setOpen(false)}
+                onClick={() => setSelected(null)}
                 className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-lime text-black flex items-center justify-center"
                 aria-label="close"
               >

@@ -81,10 +81,16 @@ export default function ResumePage() {
 
         <section className="mt-6">
           <h2 className="font-bold tracking-widest text-sm border-b border-neutral-300 pb-1">CERTIFICATIONS</h2>
-          <p className="text-sm mt-2">
-            <b>IBM Bob 2.0 Hackathon — Certificate of Completion</b> (LABLAB x NativelyAI, Sep 25–27, 2026).
-            Outstanding performance & submitted solution based on Codex / Antigravity.
-          </p>
+          <div className="mt-2 space-y-2 text-sm">
+            <p>
+              <b>NASA Space Apps Challenge — “Galactic Problem Solver”</b> (NASA Space Apps Challenge, Nov 14–15, 2026).
+              Certificate for outstanding participation and efforts to address challenges we face on Earth and in space.
+            </p>
+            <p className="text-neutral-500">
+              <b>IBM Bob 2.0 Hackathon — Certificate of Completion</b> (LABLAB x NativelyAI, Sep 25–27, 2026).
+              Outstanding performance & submitted solution based on Codex / Antigravity.
+            </p>
+          </div>
         </section>
       </div>
     </main>
